@@ -200,31 +200,37 @@
 			<!-- TABELA MEMÓRIA LÓGICA DE A-->
 			<h5>Memória Virtual</h5>
 			<div class="linha" ng-show="processoA.length >0 && selecIdProc == 'A'">
-				<table  align="center" class="table" id="tabelaExec">
-					<caption>Mem. Lógica</caption>
-					<thead >
-						<td >End. Lógico</td>
-						<td >Desloc</td>
-						<td >Byte</td>
-					</thead>
-					<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px"  align="center" ng-repeat="r in processoA  track by $index" style="font-size: 10px">
-						<td >{{r.endLogico}}</td>
-						<td >{{r.deslocamento}}</td>
-						<td >{{r.byte}}</td>
-					</tr>
-				</table>
+				<div>
+					<table  align="center" class="table" id="tabelaExec">
+						<caption>Mem. Lógica</caption>
+						<thead >
+							<td >End. Lógico</td>
+							<td >Desloc</td>
+							<td >Byte</td>
+						</thead>
+						<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px"  align="center" ng-repeat="r in processoA  track by $index" style="font-size: 10px">
+							<td >{{r.endLogico}}</td>
+							<td >{{r.deslocamento}}</td>
+							<td >{{r.byte}}</td>
+						</tr>
+					</table>
+				</div>
+				
+			
 				<!-- TABELA PÁGINAS DE A-->
-				<table  align="center" class="table" id="tabelaExec" border="2">
-					<caption>Tabela de Páginas</caption>
-					<thead>
-						<td >Pág. Lógica</td>
-						<td >Pág. Física</td>
-					</thead>
-					<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagA" style="font-size: 10px">
-						<td>{{a.endLogico}}</td>
-						<td>{{a.endFisico}}</td>
-					</tr>
-				</table>
+				<div>
+					<table  align="center" class="table" id="tabelaExec" border="2">
+						<caption>Tabela de Páginas</caption>
+						<thead>
+							<td >Pág. Lógica</td>
+							<td >Pág. Física</td>
+						</thead>
+						<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagA" style="font-size: 10px">
+							<td>{{a.endLogico}}</td>
+							<td>{{a.endFisico}}</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 
 
