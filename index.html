@@ -215,8 +215,6 @@
 						</tr>
 					</table>
 				</div>
-				
-			
 				<!-- TABELA PÁGINAS DE A-->
 				<div>
 					<table  align="center" class="table" id="tabelaExec" border="2">
@@ -233,9 +231,42 @@
 				</div>
 			</div>
 
-
 	<!-- TABELA MEMÓRIA LÓGICA DE B-->
 			<div class="linha" ng-show="processoB.length >0 && selecIdProc == 'B'">
+				<div>
+					<table align="center" class="table" id="tabelaExec">
+						<caption>Mem. Lógica</caption>
+						<thead >
+							<td >End. Lógico</td>
+							<td >Deslocamento</td>
+							<td >Byte</td>
+						</thead>
+						<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoB  track by $index">
+							<td >{{r.endLogico}}</td>
+							<td >{{r.deslocamento}}</td>
+							<td >{{r.byte}}</td>
+						</tr>
+					</table>
+				</div>
+				<!-- TABELA PÁGINAS DE B-->
+				<div>
+					<table align="center" class="table" id="tabelaExec" border="2">
+						<caption>Tabela de Páginas</caption>
+						<thead>
+							<td >Pág. Física</td>
+							<td >Pág. Lógica</td>
+						</thead>
+						<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagB" style="font-size: 10px">
+							<td height="25">{{a.endLogico}}</td>
+							<td height="25">{{a.endFisico}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+		<!-- TABELA MEMÓRIA LÓGICA DE C-->
+		<div class="linha" ng-show="processoC.length >0 && selecIdProc == 'C'">
+			<div>
 				<table align="center" class="table" id="tabelaExec">
 					<caption>Mem. Lógica</caption>
 					<thead >
@@ -243,28 +274,33 @@
 						<td >Deslocamento</td>
 						<td >Byte</td>
 					</thead>
-					<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoB  track by $index">
+					<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoC  track by $index">
 						<td >{{r.endLogico}}</td>
 						<td >{{r.deslocamento}}</td>
 						<td >{{r.byte}}</td>
 					</tr>
 				</table>
-				<!-- TABELA PÁGINAS DE B-->
+			</div>
+			<!-- TABELA PÁGINAS DE C-->
+			<div>
 				<table align="center" class="table" id="tabelaExec" border="2">
 					<caption>Tabela de Páginas</caption>
 					<thead>
 						<td >Pág. Física</td>
 						<td >Pág. Lógica</td>
 					</thead>
-					<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagB" style="font-size: 10px">
-						<td height="25">{{a.endLogico}}</td>
-						<td height="25">{{a.endFisico}}</td>
+					<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagC" style="font-size: 10px">
+						<td height="25" >{{a.endLogico}}</td>
+						<td height="25" >{{a.endFisico}}</td>
 					</tr>
 				</table>
 			</div>
+			
+		</div>
 
-		<!-- TABELA MEMÓRIA LÓGICA DE C-->
-		<div class="linha" ng-show="processoC.length >0 && selecIdProc == 'C'">
+	<!-- TABELA MEMÓRIA LÓGICA DE D-->
+	<div class="linha" ng-show="processoD.length >0 && selecIdProc == 'D'">
+		<div>
 			<table align="center" class="table" id="tabelaExec">
 				<caption>Mem. Lógica</caption>
 				<thead >
@@ -272,53 +308,27 @@
 					<td >Deslocamento</td>
 					<td >Byte</td>
 				</thead>
-				<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoC  track by $index">
+				<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center" ng-repeat="r in processoD  track by $index">
 					<td >{{r.endLogico}}</td>
 					<td >{{r.deslocamento}}</td>
 					<td >{{r.byte}}</td>
 				</tr>
 			</table>
-			<!-- TABELA PÁGINAS DE C-->
+		</div>
+		<!-- TABELA PÁGINAS DE D-->
+		<div>
 			<table align="center" class="table" id="tabelaExec" border="2">
 				<caption>Tabela de Páginas</caption>
 				<thead>
 					<td >Pág. Física</td>
 					<td >Pág. Lógica</td>
 				</thead>
-				<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagC" style="font-size: 10px">
-					<td height="25" >{{a.endLogico}}</td>
-					<td height="25" >{{a.endFisico}}</td>
+				<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagD" style="font-size: 10px">
+					<td height="25">{{a.endLogico}}</td>
+					<td height="25">{{a.endFisico}}</td>
 				</tr>
 			</table>
 		</div>
-
-	<!-- TABELA MEMÓRIA LÓGICA DE D-->
-	<div class="linha" ng-show="processoD.length >0 && selecIdProc == 'D'">
-		<table align="center" class="table" id="tabelaExec">
-			<caption>Mem. Lógica</caption>
-			<thead >
-				<td >End. Lógico</td>
-				<td >Deslocamento</td>
-				<td >Byte</td>
-			</thead>
-			<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center" ng-repeat="r in processoD  track by $index">
-				<td >{{r.endLogico}}</td>
-				<td >{{r.deslocamento}}</td>
-				<td >{{r.byte}}</td>
-			</tr>
-		</table>
-		<!-- TABELA PÁGINAS DE D-->
-		<table align="center" class="table" id="tabelaExec" border="2">
-			<caption>Tabela de Páginas</caption>
-			<thead>
-				<td >Pág. Física</td>
-				<td >Pág. Lógica</td>
-			</thead>
-			<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagD" style="font-size: 10px">
-				<td height="25">{{a.endLogico}}</td>
-				<td height="25">{{a.endFisico}}</td>
-			</tr>
-		</table>
 	</div>
 </div>
 
