@@ -340,7 +340,7 @@ $scope.criaPaginas = function(processo){
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#9370DB")
+						var v_pagina = $scope.criarTabPaginas(i,"#988CD1")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					
@@ -350,10 +350,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#9370DB";
+					pag.cor = "#988CD1";
 				} if( i == 1){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#BC8F8F")
+						var v_pagina = $scope.criarTabPaginas(i,"#526eb5")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -362,10 +362,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#BC8F8F";
+					pag.cor = "#526eb5";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#9370DB")
+						var v_pagina = $scope.criarTabPaginas(i,"#988CD1")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -374,10 +374,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#9370DB";
+					pag.cor = "#988CD1";
 				} if( i == 3 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#BC8F8F")
+						var v_pagina = $scope.criarTabPaginas(i,"#526eb5")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -386,7 +386,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#BC8F8F";
+					pag.cor = "#526eb5";
 				}
 				
 				$scope.processoD.push(pag);
