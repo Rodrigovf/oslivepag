@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="oslive">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport"
+		content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="app.css">
+	<script data-require="angular.js@1.6.1" data-semver="1.6.1"
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+	<script data-require="angular-animate@1.6.0" data-semver="1.6.0"
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-animate.js"></script>
+	<script type="text/javascript" src="loader.js"></script>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="node_modules/angular-route/angular-route.min.js"></script>
+	<script src="node_modules/angular-resource/angular-resource.min.js"></script>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"  -->
+		<!-- integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="Algoritimos/processo.js"></script>
+	<script type="text/javascript" src="Algoritimos/cpu.js"></script>
+	<script type="text/javascript" src="Algoritimos/pc.js"></script>
+	<script type="text/javascript" src="graficos.js"></script>
+	<script type="text/javascript" src="notify.js"></script>
+	<script type="text/javascript" src="Algoritimos/escalona_fifo.js"></script>
+	<script type="text/javascript" src="Algoritimos/escalona_sjf.js"></script>
+	<script type="text/javascript" src="Algoritimos/escalona_prio.js"></script>
+	<script type="text/javascript" src="Algoritimos/escalona_prio_premp.js"></script>
+	<link rel="icon" type="image/jpg" href="computer.png" /> <!-- icone do titulo -->
+	<title>OSlive</title>
+</head>
+
+<body ng-controller="homeController">
+	<div class="nav-side-menu">
+		<!-- barra de navegacao vertical -->
+		<!-- <div class="brand" style="font-family: 'Times New Roman', Times, serif"><b style="font-size: 28px">OS</b><b
+				style="font-size: 20px">live</b></div> -->
+
+		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+		<div class="menu-list">	
+
+			<ul id="menu-content" class="menu-content collapse out">
+				<li data-toggle="collapse" data-target="#config" class="active" aria-expanded="true">
+					<a href="#">
+						<i class="glyphicon glyphicon-cog"></i> <b style="font-size: 17px">Á</b>rea de 
+						<b style="font-size: 17px">C</b>onfiguração <span></span>
+						</a>
+				</li>
+				</li>
+				
+				<!--<ul class="sub-menu .collapse.show" id="config">
+						<li data-toggle="collapse" data-target="#algoritmo" class="collapsed active"><b style="font-size: 15px">S</b>elecionar <b style="font-size: 15px">A</b>lgoritmo de <b style="font-size: 15px">E</b>scalonamento</li>
+						<ul class="sub-menu .collapse.show in" id="algoritmo" style="margin-top: 6px ; margin-bottom: 6px">
+						<select class="form-control" id="selectAlgoritmo" name="selectAlgoritmo"
+							ng-model="escalonador" style="margin-top: 6px ; margin-bottom: 6px">
+							<option value=info>Algoritmos de Escalonamento</option>
+							<option value="FIFO">FIFO (First In, First Out)</option>
+							
+						</select>
+					</ul>-->
+					<!-- Cadastrar Processos -->
+					<li align="center" data-toggle="collapse" data-target="#add" class="collapsed active">
+					<b style="font-size: 15px width: 10px;">C</b>riar <b style="font-size: 15px">P</b>rocessos</li>
+					<!-- <li><b style="font-size: 15px">A</b>dicionar <b style="font-size: 15px">P</b>rocessos</li> -->
+					<ul class="sub-menu .collapse.show" id="add">
+					<!-- <ul id="add"> -->
+						<div style="background: rgb(218, 218, 218)">
+							<div>
+								<label style="margin-left: 15px" for="check">
+								<input type="checkbox" id=check style="margin-left: 10px;" ng-model="aleatorio">
+								Deseja gerar processos com valores aleatórios para sua simulação ?
+							 	
+								<button ng-show="aleatorio" style="margin-left: 25px; margin-bottom: 15px; border-color: rgb(92, 184, 92); color: rgb(92, 184, 92)"
+								 class="btn btn-outline-primary" id="btnCad" ng-click="geradorAleatorio()">
+								<i class="fa fa-cogs" aria-hidden="true"></i> <b> Gerar Processos </b></button>
+							</label>
+							</div>
+						</div>
+						
+						<form ng-show="!aleatorio" class="form-group">
+							
+							<div "class="form-group">
+								<p  align="center">Criar processo manualmente:<p>
+								<select class="form-control"  id="processo" ng-model="processo.nome" >
+								<option value="" disabled selected>Nome do processo</option>
+								  <option>A</option>
+								  <option>B</option>
+								  <option>C</option>
+								  <option>D</option>
+								</select>
+							</div>
+							<div>
+								<input type="number" id="execucao" min="1" max="16" class="form-control" ng-model="processo.bytes"
+									placeholder="Qtd. de bytes">
+							</div>
+						
+							<div  id="botoes" align="center">
+								<button ng-show="!processo.edit" class="btn btn-success" id="btnCad" ng-click="cadastrar(processo)"><i
+										class="glyphicon glyphicon-plus-sign"></i> Cadastrar</button>
+								<button class="btn btn-danger" id="btnCan" ng-click="limparForm()"><i
+										class="glyphicon glyphicon-remove-sign"></i> Cancelar</button>
+							</div>
+						</form>
+					</ul>
+					<div>
+						<div>
+							<li class="active collapsed" data-toggle="collapse" aria-expanded="false" data-target="#tabela" >
+								<p align="center">Tabela de Processos</p></li>
+							<!-- Listar processos na tabela -->
+							<ul class="{{processos.length == 0? 'sub-menu collapsed collapse' : 'sub-menu collapsed collapse in'}}" 
+								aria-expanded="{{processos.length == 0? 'false' : 'true'}}" id="tabela" style="height: auto !important;">
+								<table class="table table-borded" id="tabelaProcesso" style="font-size: 12px" ng-if="processos.length > 0">
+									<tr align=center>
+										<td>Processo</td>
+										<td>Bytes</td>
+										<td>Ações</td>
+									</tr>
+									<tr align=center ng-repeat="p in processos">
+<!-- 										<td style="color: {{p.cor}}; width: 5px;"><i class="fa fa-square" aria-hidden="true"></i> &nbsp;<b style="color: black">{{p.nome}}</b></td>
+ -->									<td><a class="nav-link " href="#" ng-class="{'btn btn-dark': p.nome === selecIdProc, 'btn btn-default': p.nome!=selecIdProc}" ng-click="selecProc(p.nome);">{{p.nome}}</a></td>	
+ 										<td>{{p.bytes}}</td>
+										<td>
+											<button type="button" class="btn btn-success btn-sm " ng-if="p.status" ng-click="addMemoriaf(p.nome,p)" >
+												<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Adicionar à memória
+											</button>
+											<button type="button" class="btn btn-danger btn-sm" ng-if="!p.status" ng-click="rmMemoriaf(p.nome,p)">
+												<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Remover da memória
+											</button>
+										</td>
+									</tr>
+								</table>
+								<h6 style="text-align: center" ng-if="processos.length == 0">Não há processo cadastrado.</h6>
+							</ul>
+						</div>
+					</div>
+				</ul>
+				<!-- Simular 
+				<li data-toggle="collapse" data-target="#simular" class="collapsed">
+					<a href="#">
+						<i class="fa fa-dashboard fa-lg"></i> <b style="font-size: 17px">Á</b>rea de
+						<b style="font-size: 17px">S</b>imulação<span class="arrow">
+					</a>
+				</li>
+					<ul class="sub-menu collapse" id="simular">
+						<div align="center">
+							<b style="font-size: 17px">S</b>em <b style="font-size: 17px">A</b>nimação: <input type="checkbox"
+								ng-model="n">
+						</div>
+						<div id="botoes" align="center">
+							<button class="btn btn-primary" id="btnSimular" ng-click="simular()" 
+									ng-focus="chegada"><i
+									class="glyphicon glyphicon-play"></i> Iniciar</button>
+							<button class="btn btn-danger" id="btnCanSimu" ng-click="cancel_simulacao()"><i
+									class="glyphicon glyphicon-stop"></i> Cancelar</button>
+						</div>
+					</ul>
+					-->
+			</ul>
+		</div>
+	</div> 
+	<!-- fim da barra de menu vertical class="nav-side-menu"-->
+
+
+	<div class="col-sm-9 col-sm-offset-1" style="font-size: 10px; height: 40px" >
+		<h3 style="text-align: center"><b>Simulação da Paginação Simples</b></h3>
+	</div>
+
+	<!-- Lista de páginas FIFO -->
+	<div class="col-sm-9 col-sm-offset-1" >
+		
+		<div class="table-responsive lista_proc">
+			<h5 style="text-align: left">Memórias Lógicas dos Processos:</h5>
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"  ng-repeat="p in processos" ng-class="{'btn btn-dark': p.nome === selecIdProc, 'btn btn-default': p.nome!=selecIdProc}" ng-click="selecProc(p.nome);">{{p.nome}}</a>
+				</div>
+			  </nav>
+			<!-- <ul class="nav nav-tabs">
+				<li class="nav-item" ng-repeat="p in processos">
+					<a class="nav-link " href="#" ng-class="{'btn btn-dark': p.nome === selecIdProc, 'btn btn-default': p.nome!=selecIdProc}" ng-click="selecProc(p.nome);">{{p.nome}}</a>
+				</li>
+			</ul> -->
+		</div>
+	</div>
+	
+		
+
+<!-- TABELAS DA MEMÓRIA LÓGICA DOS PROCESSOS-->
+	
+	<div class="col-sm-9 col-sm-offset-1" align="left">
+		<div class="table-responsive">
+			<!-- TABELA MEMÓRIA LÓGICA DE A-->
+			<h5>Memória Virtual</h5>
+			<div class="linha" ng-show="processoA.length >0 && selecIdProc == 'A'">
+				<table  align="center" class="table" id="tabelaExec">
+					<caption>Mem. Lógica</caption>
+					<thead >
+						<td >End. Lógico</td>
+						<td >Desloc</td>
+						<td >Byte</td>
+					</thead>
+					<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px"  align="center" ng-repeat="r in processoA  track by $index" style="font-size: 10px">
+						<td >{{r.endLogico}}</td>
+						<td >{{r.deslocamento}}</td>
+						<td >{{r.byte}}</td>
+					</tr>
+				</table>
+				<!-- TABELA PÁGINAS DE A-->
+				<table  align="center" class="table" id="tabelaExec" border="2">
+					<caption>Tabela de Páginas</caption>
+					<thead>
+						<td >Pág. Lógica</td>
+						<td >Pág. Física</td>
+					</thead>
+					<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagA" style="font-size: 10px">
+						<td>{{a.endLogico}}</td>
+						<td>{{a.endFisico}}</td>
+					</tr>
+				</table>
+			</div>
+
+
+	<!-- TABELA MEMÓRIA LÓGICA DE B-->
+			<div class="linha" ng-show="processoB.length >0 && selecIdProc == 'B'">
+				<table align="center" class="table" id="tabelaExec">
+					<caption>Mem. Lógica</caption>
+					<thead >
+						<td >End. Lógico</td>
+						<td >Deslocamento</td>
+						<td >Byte</td>
+					</thead>
+					<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoB  track by $index">
+						<td >{{r.endLogico}}</td>
+						<td >{{r.deslocamento}}</td>
+						<td >{{r.byte}}</td>
+					</tr>
+				</table>
+				<!-- TABELA PÁGINAS DE B-->
+				<table align="center" class="table" id="tabelaExec" border="2">
+					<caption>Tabela de Páginas</caption>
+					<thead>
+						<td >Pág. Física</td>
+						<td >Pág. Lógica</td>
+					</thead>
+					<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagB" style="font-size: 10px">
+						<td>{{a.endLogico}}</td>
+						<td>{{a.endFisico}}</td>
+					</tr>
+				</table>
+			</div>
+
+		<!-- TABELA MEMÓRIA LÓGICA DE C-->
+		<div class="linha" ng-show="processoC.length >0 && selecIdProc == 'C'">
+			<table align="center" class="table" id="tabelaExec">
+				<caption>Mem. Lógica</caption>
+				<thead >
+					<td >End. Lógico</td>
+					<td >Deslocamento</td>
+					<td >Byte</td>
+				</thead>
+				<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoC  track by $index">
+					<td >{{r.endLogico}}</td>
+					<td >{{r.deslocamento}}</td>
+					<td >{{r.byte}}</td>
+				</tr>
+			</table>
+			<!-- TABELA PÁGINAS DE C-->
+			<table align="center" class="table" id="tabelaExec" border="2">
+				<caption>Tabela de Páginas</caption>
+				<thead>
+					<td >Pág. Física</td>
+					<td >Pág. Lógica</td>
+				</thead>
+				<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagC" style="font-size: 10px">
+					<td>{{a.endLogico}}</td>
+					<td>{{a.endFisico}}</td>
+				</tr>
+			</table>
+		</div>
+
+	<!-- TABELA MEMÓRIA LÓGICA DE D-->
+	<div class="linha" ng-show="processoD.length >0 && selecIdProc == 'D'">
+		<table align="center" class="table" id="tabelaExec">
+			<caption>Mem. Lógica</caption>
+			<thead >
+				<td >End. Lógico</td>
+				<td >Deslocamento</td>
+				<td >Byte</td>
+			</thead>
+			<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center" ng-repeat="r in processoD  track by $index">
+				<td >{{r.endLogico}}</td>
+				<td >{{r.deslocamento}}</td>
+				<td >{{r.byte}}</td>
+			</tr>
+		</table>
+		<!-- TABELA PÁGINAS DE D-->
+		<table align="center" class="table" id="tabelaExec" border="2">
+			<caption>Tabela de Páginas</caption>
+			<thead>
+				<td >Pág. Física</td>
+				<td >Pág. Lógica</td>
+			</thead>
+			<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagD" style="font-size: 10px">
+				<td>{{a.endLogico}}</td>
+				<td>{{a.endFisico}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+		<!-- TABELA DA MEMÓRIA FISICA -->
+		<div class="table-responsive">
+			<h5>Memória Física</h5>
+			<div class="linha">
+				<table align="center" class="table" id="tabelaExec">
+					<thead >
+						<td>End. Físico</td>
+						<td>Desloc</td>
+						<td>byte</td>
+					</thead>
+
+					<tr align="center" ng-repeat="m in memoriaF1" style="-webkit-transition-delay:{{1 * 100}}ms; background-color:{{m.cor}}; color: #FFFFFF; font-size: 11px">
+						<td >{{m.endFisico}}</td>
+						<td>{{m.deslocamento}}</td>
+						<td>{{m.byte}}</td>
+					</tr>
+				</table>
+
+				<!-- TABELA DA MEMÓRIA FISICA -->
+				<table align="center" class="table" id="tabelaExec" >
+					<thead>
+						<td>End. Físico</td>
+						<td>Desloc</td>
+						<td>byte</td>
+					</thead>
+
+					<tr align="center" ng-repeat="m in memoriaF2" style="-webkit-transition-delay:{{1 * 100}}ms; background-color:{{m.cor}}; color: #FFFFFF; font-size: 11px">
+						<td >{{m.endFisico}}</td>
+						<td>{{m.deslocamento}}</td>
+						<td>{{m.byte}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- TABELA DE PAGINAS DO PROCESSO A-->
+	<footer id="rodape">
+	</footer>
+</body>
+
+</html>
