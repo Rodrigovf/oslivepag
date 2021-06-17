@@ -118,11 +118,17 @@ $scope.cadastrar = function(processo){
 			$scope.limparForm();
 			$(".glyphicon-cog").notify("Processo cadastrado!", "success");	
 		}else{
-			$(".glyphicon-cog").notify("Tamanho máximo do processo 16 bytes", "warn");
+			$(".alerta").notify("Tamanho máximo do processo 16 Bytes(4 páginas)", "error",{ position:"top center" });
 		}
 	} else {
 		if($scope.plivre < paginasize ){
-			$.notify("Memória insuficiente!\n Existe "+qtdbytelivre+" bytes de memória livre", "info",{ position:"righ top" });
+			if(processo.bytes > 16){
+				$(".alerta").notify("Tamanho máximo do processo 16 Bytes(4 páginas)", "error",{ position:"top center" });
+				$.notify("Memória insuficiente!\n Existe "+qtdbytelivre+" bytes de memória livre", "info",{ position:"righ top" });
+			}else {
+				$.notify("Memória insuficiente!\n Existe "+qtdbytelivre+" bytes de memória livre", "info",{ position:"righ top" });
+
+			}
 		} else if (!processo.nome | !processo.bytes) {
 			$(".glyphicon-cog").notify("Preencha todos os campos!", "info");
 		}else{
@@ -225,7 +231,7 @@ $scope.criaPaginas = function(processo){
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#2F4F4F")
+						var v_pagina = $scope.criarTabPaginas(i,"#FA9E46")
 						$scope.tab_pagB.push(v_pagina)
 					}
 					
@@ -235,10 +241,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#2F4F4F";
+					pag.cor = "#FA9E46";
 				} if( i == 1){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#008B8B")
+						var v_pagina = $scope.criarTabPaginas(i,"#FA8125")
 						$scope.tab_pagB.push(v_pagina)
 					}
 					
@@ -248,10 +254,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#008B8B";
+					pag.cor = "#FA8125";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#2F4F4F")
+						var v_pagina = $scope.criarTabPaginas(i,"#FA9E46")
 						$scope.tab_pagB.push(v_pagina)
 					}
 					
@@ -261,10 +267,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#2F4F4F";
+					pag.cor = "#FA9E46";
 				} if( i == 3 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#008B8B")
+						var v_pagina = $scope.criarTabPaginas(i,"#FA8125")
 						$scope.tab_pagB.push(v_pagina)
 					}
 					
@@ -274,7 +280,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#008B8B";
+					pag.cor = "#FA8125";
 				}
 				
 				$scope.processoB.push(pag);
@@ -366,7 +372,7 @@ $scope.criaPaginas = function(processo){
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#34171A")
+						var v_pagina = $scope.criarTabPaginas(i,"#1B2727")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					
@@ -376,10 +382,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#34171A";
+					pag.cor = "#1B2727";
 				} if( i == 1){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#7E5252")
+						var v_pagina = $scope.criarTabPaginas(i,"#3C5148")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -388,10 +394,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#7E5252";
+					pag.cor = "#3C5148";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#34171A")
+						var v_pagina = $scope.criarTabPaginas(i,"#1B2727")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -400,10 +406,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#34171A";
+					pag.cor = "#1B2727";
 				} if( i == 3 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#7E5252")
+						var v_pagina = $scope.criarTabPaginas(i,"#3C5148")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -412,7 +418,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#7E5252";
+					pag.cor = "#3C5148";
 				}
 				
 				$scope.processoD.push(pag);
