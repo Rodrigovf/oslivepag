@@ -72,7 +72,7 @@
 					<!-- <li><b style="font-size: 15px">A</b>dicionar <b style="font-size: 15px">P</b>rocessos</li> -->
 					<ul class="sub-menu .collapse.show" id="add">
 					<!-- <ul id="add"> -->
-						<div style="background: rgb(218, 218, 218)">
+						<!-- <div style="background: rgb(218, 218, 218)">
 							<div>
 								<label style="margin-left: 15px" for="check">
 								<input type="checkbox" id=check style="margin-left: 10px;" ng-model="aleatorio">
@@ -83,12 +83,11 @@
 								<i class="fa fa-cogs" aria-hidden="true"></i> <b> Gerar Processos </b></button>
 							</label>
 							</div>
-						</div>
+						</div> -->
 						
 						<form ng-show="!aleatorio" class="form-group">
 							
 							<div "class="form-group">
-								<p  align="center">Criar processo manualmente:<p>
 								<select class="form-control"  id="processo" ng-model="processo.nome" >
 								<option value="" disabled selected>Nome do processo</option>
 								  <option>A</option>
@@ -98,13 +97,13 @@
 								</select>
 							</div>
 							<div>
-								<input type="number" id="execucao" min="1" max="16" class="form-control" ng-model="processo.bytes"
+								<input type="number" id="execucao"  min="1" class="form-control" ng-model="processo.bytes"
 									placeholder="Qtd. de bytes">
 							</div>
 						
 							<div  id="botoes" align="center">
 								<button ng-show="!processo.edit" class="btn btn-success" id="btnCad" ng-click="cadastrar(processo)"><i
-										class="glyphicon glyphicon-plus-sign"></i> Cadastrar</button>
+										class="glyphicon glyphicon-plus-sign"></i> Criar </button>
 								<button class="btn btn-danger" id="btnCan" ng-click="limparForm()"><i
 										class="glyphicon glyphicon-remove-sign"></i> Cancelar</button>
 							</div>
@@ -128,15 +127,14 @@
  -->									<td><a class="nav-link " href="#" ng-class="{'btn btn-dark': p.nome === selecIdProc, 'btn btn-default': p.nome!=selecIdProc}" ng-click="selecProc(p.nome);">{{p.nome}}</a></td>	
  										<td>{{p.bytes}}</td>
 										<td>
-											<button type="button" class="btn btn-success btn-sm " ng-if="p.status" ng-click="addMemoriaf(p.nome,p)" >
-												<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Adicionar à memória
-											</button>
-											<button type="button" class="btn btn-danger btn-sm" ng-if="!p.status" ng-click="rmMemoriaf(p.nome,p)">
+											
+											<button type="button" class="btn btn-danger btn-sm"  ng-click="rmMemoriaf(p.nome,p)">
 												<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Remover da memória
 											</button>
 										</td>
 									</tr>
 								</table>
+								
 								<h6 style="text-align: center" ng-if="processos.length == 0">Não há processo cadastrado.</h6>
 							</ul>
 						</div>
@@ -170,7 +168,7 @@
 
 
 	<div class="col-sm-9 col-sm-offset-1" style="font-size: 10px; height: 40px" >
-		<h3 style="text-align: center"><b>Simulação da Paginação Simples</b></h3>
+		<h3 style="text-align: center"><b>Simulação da Paginação</b></h3>
 	</div>
 
 	<!-- Lista de páginas FIFO -->
@@ -198,17 +196,17 @@
 	<div class="col-sm-9 col-sm-offset-1" align="left">
 		<div class="table-responsive">
 			<!-- TABELA MEMÓRIA LÓGICA DE A-->
-			<h5>Memória Virtual</h5>
+			
 			<div class="linha" ng-show="processoA.length >0 && selecIdProc == 'A'">
 				<div>
 					<table  align="center" class="table" id="tabelaExec">
-						<caption>Mem. Lógica</caption>
+						<caption><h5>Mem. Lógica</h5></caption>
 						<thead >
 							<td >End. Lógico</td>
 							<td >Desloc</td>
 							<td >Byte</td>
 						</thead>
-						<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px"  align="center" ng-repeat="r in processoA  track by $index" style="font-size: 10px">
+						<tr style="-webkit-transition-delay:{{1 * 200}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px"  align="center" ng-repeat="r in processoA  track by $index" style="font-size: 10px">
 							<td >{{r.endLogico}}</td>
 							<td >{{r.deslocamento}}</td>
 							<td >{{r.byte}}</td>
@@ -223,7 +221,7 @@
 							<td >Pág. Lógica</td>
 							<td >Pág. Física</td>
 						</thead>
-						<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagA" style="font-size: 10px">
+						<tr align="center" style="-webkit-transition-delay:{{1 * 200}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagA" style="font-size: 10px">
 							<td height="25">{{a.endLogico}}</td>
 							<td height="25">{{a.endFisico}}</td>
 						</tr>
@@ -235,13 +233,13 @@
 			<div class="linha" ng-show="processoB.length >0 && selecIdProc == 'B'">
 				<div>
 					<table align="center" class="table" id="tabelaExec">
-						<caption>Mem. Lógica</caption>
+						<caption><h5>Mem. Lógica</h5></caption>
 						<thead >
 							<td >End. Lógico</td>
 							<td >Desloc</td>
 							<td >Byte</td>
 						</thead>
-						<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoB  track by $index">
+						<tr style="-webkit-transition-delay:{{1 * 200}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoB  track by $index">
 							<td >{{r.endLogico}}</td>
 							<td >{{r.deslocamento}}</td>
 							<td >{{r.byte}}</td>
@@ -256,7 +254,7 @@
 							<td >Pág. Física</td>
 							<td >Pág. Lógica</td>
 						</thead>
-						<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagB" style="font-size: 10px">
+						<tr align="center" style="-webkit-transition-delay:{{1 * 200}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagB" style="font-size: 10px">
 							<td height="25">{{a.endLogico}}</td>
 							<td height="25">{{a.endFisico}}</td>
 						</tr>
@@ -268,13 +266,13 @@
 		<div class="linha" ng-show="processoC.length >0 && selecIdProc == 'C'">
 			<div>
 				<table align="center" class="table" id="tabelaExec">
-					<caption>Mem. Lógica</caption>
+					<caption><h5>Mem. Lógica</h5></caption>
 					<thead >
 						<td >End. Lógico</td>
 						<td >Desloc</td>
 						<td >Byte</td>
 					</thead>
-					<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoC  track by $index">
+					<tr style="-webkit-transition-delay:{{1 * 200}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center"ng-repeat="r in processoC  track by $index">
 						<td >{{r.endLogico}}</td>
 						<td >{{r.deslocamento}}</td>
 						<td >{{r.byte}}</td>
@@ -289,7 +287,7 @@
 						<td >Pág. Física</td>
 						<td >Pág. Lógica</td>
 					</thead>
-					<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagC" style="font-size: 10px">
+					<tr align="center" style="-webkit-transition-delay:{{1 * 200}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagC" style="font-size: 10px">
 						<td height="25" >{{a.endLogico}}</td>
 						<td height="25" >{{a.endFisico}}</td>
 					</tr>
@@ -302,13 +300,13 @@
 	<div class="linha" ng-show="processoD.length >0 && selecIdProc == 'D'">
 		<div>
 			<table align="center" class="table" id="tabelaExec">
-				<caption>Mem. Lógica</caption>
+				<caption><h5>Mem. Lógica</h5></caption>
 				<thead >
 					<td >End. Lógico</td>
 					<td >Desloc</td>
 					<td >Byte</td>
 				</thead>
-				<tr style="-webkit-transition-delay:{{1 * 500}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center" ng-repeat="r in processoD  track by $index">
+				<tr style="-webkit-transition-delay:{{1 * 200}}ms; background-color:{{r.cor}}; color: #fff; font-size: 10px" heigth="5px" align="center" ng-repeat="r in processoD  track by $index">
 					<td >{{r.endLogico}}</td>
 					<td >{{r.deslocamento}}</td>
 					<td >{{r.byte}}</td>
@@ -323,7 +321,7 @@
 					<td >Pág. Física</td>
 					<td >Pág. Lógica</td>
 				</thead>
-				<tr align="center" style="-webkit-transition-delay:{{1 * 500}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagD" style="font-size: 10px">
+				<tr align="center" style="-webkit-transition-delay:{{1 * 200}}ms; background-color: {{a.cor}}; color: #FFFFFF; font-size: 10px" ng-repeat="a in tab_pagD" style="font-size: 10px">
 					<td height="25">{{a.endLogico}}</td>
 					<td height="25">{{a.endFisico}}</td>
 				</tr>
@@ -334,7 +332,7 @@
 
 		<!-- TABELA DA MEMÓRIA FISICA -->
 		<div class="table-responsive">
-			<h5>Memória Física</h5>
+			<h5 class="info">Memória Física</h5>
 			<div class="linha">
 				<table align="center" class="table" id="tabelaExec">
 					<thead >
