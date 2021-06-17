@@ -9,7 +9,7 @@ var cont = 100
 var pc, cpu, pagina, time;
 var indiceLivreMF = 0;
 $scope.free = 32;
-
+$scope.nomeProcesso = ["A","B","C","D","E","F"]
 //Definindo processos 
 $scope.processos = [];
 $scope.processoA = [];
@@ -121,7 +121,7 @@ $scope.cadastrar = function(processo){
 			p.status=true;
 			p.cor = cor;
 			$scope.processos.push(p);
-			$scope.limparForm();
+			$scope.limparForm(processo.nome);
 			$(".glyphicon-cog").notify("Processo "+processo.nome+" cadastrado!", "success");	
 		}else{
 			$(".alerta").notify("Tamanho máximo do processo 16 Bytes(4 páginas)", "error",{ position:"top center" });
@@ -641,9 +641,11 @@ $scope.carregarPagina = function(processo){
 }
 
 
-$scope.limparForm = function(){
+$scope.limparForm = function(nome){
 	$scope.processo.nome="";
 	$scope.processo.bytes=null;
+	var indice = $scope.nomeProcesso.indexOf(nome)
+	$scope.nomeProcesso.splice(indice,1)
 }
 
 // função para exibição do tooltip
@@ -878,6 +880,7 @@ $scope.addMemoriaf = function(index){
 // Remover paginas na memória física
 $scope.rmMemoriaf = function(index,obj){
 	var aux = 0;
+	var procnome = obj.nome;
 	var posicao = $scope.processos.indexOf(obj);
 	for(i = 0; i< $scope.paginasMF.length; i++){
 		if($scope.paginasMF[i].processo == index){
@@ -923,6 +926,10 @@ $scope.rmMemoriaf = function(index,obj){
 
 		}
 	}
+
+$scope.nomeProcesso.push(procnome);
+$scope.nomeProcesso.sort();
+
 var nome = $scope.processos[posicao].nome 
 $scope.processos.splice(posicao,1);
 

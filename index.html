@@ -90,12 +90,7 @@
 							<div "class="form-group">
 								<select class="form-control"  id="processo" ng-model="processo.nome" >
 								<option value="" disabled selected>Nome do processo</option>
-								  <option>A</option>
-								  <option>B</option>
-								  <option>C</option>
-								  <option>D</option>
-								  <option>E</option>
-								  <option>F</option>
+								  <option ng-repeat="n in nomeProcesso">{{n}}</option>
 								</select>
 							</div>
 							<div>
