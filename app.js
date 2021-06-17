@@ -108,7 +108,7 @@ $scope.cadastrar = function(processo){
 	}
 	
 	if(!verificaID(processo.nome) && $scope.plivre >= paginasize && !!processo.nome && !!processo.bytes){
-		
+		if(processo.bytes <= 16){
 			$scope.criaPaginas(processo)
 			$scope.addMemoriaf(processo.nome)
 			var p = angular.copy(processo);
@@ -117,8 +117,11 @@ $scope.cadastrar = function(processo){
 			$scope.processos.push(p);
 			$scope.limparForm();
 			$(".glyphicon-cog").notify("Processo cadastrado!", "success");	
+		}else{
+			$(".glyphicon-cog").notify("Tamanho máximo do processo 16 bytes", "warn");
+		}
 	} else {
-		if($scope.plivre < paginasize){
+		if($scope.plivre < paginasize ){
 			$.notify("Memória insuficiente!\n Existe "+qtdbytelivre+" bytes de memória livre", "info",{ position:"righ top" });
 		} else if (!processo.nome | !processo.bytes) {
 			$(".glyphicon-cog").notify("Preencha todos os campos!", "info");
