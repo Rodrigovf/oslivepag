@@ -124,8 +124,8 @@
 									</tr>
 									<tr align=center ng-repeat="p in processos">
 <!-- 										<td style="color: {{p.cor}}; width: 5px;"><i class="fa fa-square" aria-hidden="true"></i> &nbsp;<b style="color: black">{{p.nome}}</b></td>
- -->									<td><a class="nav-link " href="#" ng-class="{'btn btn-dark': p.nome === selecIdProc, 'btn btn-default': p.nome!=selecIdProc}" ng-click="selecProc(p.nome);">{{p.nome}}</a></td>	
- 										<td>{{p.bytes}}</td>
+ -->									<td><a class="nav-link " href="#" style="background-color:{{p.cor}}" ng-class="{'btn btn-dark': p.nome === selecIdProc, 'btn btn-default': p.nome!=selecIdProc}" ng-click="selecProc(p.nome);">{{p.nome}}</a></td>	
+ 										<td >{{p.bytes}}</td>
 										<td>
 											
 											<button type="button" class="btn btn-primary btn-sm"  ng-click="rmMemoriaf(p.nome,p)">

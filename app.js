@@ -109,11 +109,12 @@ $scope.cadastrar = function(processo){
 	
 	if(!verificaID(processo.nome) && $scope.plivre >= paginasize && !!processo.nome && !!processo.bytes){
 		if(processo.bytes <= 16){
-			$scope.criaPaginas(processo)
+			var cor = $scope.criaPaginas(processo)
 			$scope.addMemoriaf(processo.nome)
 			var p = angular.copy(processo);
 			$scope.selecProc(processo.nome)
 			p.status=true;
+			p.cor = cor;
 			$scope.processos.push(p);
 			$scope.limparForm();
 			$(".glyphicon-cog").notify("Processo cadastrado!", "success");	
@@ -147,6 +148,7 @@ $scope.cadastrar = function(processo){
 
 
 $scope.criaPaginas = function(processo){
+	var cor;
 	var nByte = 0;
 	var paginasize = processo.bytes;
 	var npaginas = [4,8,12,16]
@@ -161,6 +163,7 @@ $scope.criaPaginas = function(processo){
 		var v_pagina = $scope.criarTabPaginas(i)
 
 		if(processo.nome == "A"){
+			cor = "#3aa0d6";
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
@@ -228,6 +231,7 @@ $scope.criaPaginas = function(processo){
 			}
 		
 		} if($scope.processo.nome == "B"){
+			cor = "#FA9E46";
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
@@ -297,7 +301,7 @@ $scope.criaPaginas = function(processo){
 				}
 			}
 		} if($scope.processo.nome == "C"){
-					
+			cor = "#db3e39";					
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
@@ -363,12 +367,10 @@ $scope.criaPaginas = function(processo){
 					for(var p = qtdbyte; p <= pa-1; p++){
 						$scope.processoC[p].byte = null;
 					}
-
 				}
-
-				
 			}
 		} if($scope.processo.nome == "D"){
+			cor = "#3C5148"
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
@@ -436,6 +438,7 @@ $scope.criaPaginas = function(processo){
 			}
 		}
 	} 
+	return cor;
 }
 
 
