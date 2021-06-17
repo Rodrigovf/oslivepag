@@ -16,12 +16,17 @@ $scope.processoA = [];
 $scope.processoB = [];
 $scope.processoC = [];
 $scope.processoD = [];
+$scope.processoE = [];
+$scope.processoF = [];
 $scope.processoAtual = null;
 
 $scope.tab_pagA = [];
 $scope.tab_pagB = [];
 $scope.tab_pagC = [];
 $scope.tab_pagD = [];
+$scope.tab_pagE = [];
+$scope.tab_pagF = [];
+
 
 //Definindo Memória física para ser alocada
 $scope.memoriaF = [
@@ -117,7 +122,7 @@ $scope.cadastrar = function(processo){
 			p.cor = cor;
 			$scope.processos.push(p);
 			$scope.limparForm();
-			$(".glyphicon-cog").notify("Processo cadastrado!", "success");	
+			$(".glyphicon-cog").notify("Processo "+processo.nome+" cadastrado!", "success");	
 		}else{
 			$(".alerta").notify("Tamanho máximo do processo 16 Bytes(4 páginas)", "error",{ position:"top center" });
 		}
@@ -163,11 +168,11 @@ $scope.criaPaginas = function(processo){
 		var v_pagina = $scope.criarTabPaginas(i)
 
 		if(processo.nome == "A"){
-			cor = "#3aa0d6";
+			cor = "#0780A7";
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#084f75")
+						var v_pagina = $scope.criarTabPaginas(i,"#0780A7")
 						$scope.tab_pagA.push(v_pagina)
 					}
 					
@@ -177,7 +182,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#084f75";
+					pag.cor = "#0780A7";
 				} if( i == 1){
 					if(j == 0){
 						var v_pagina = $scope.criarTabPaginas(i,"#3aa0d6")
@@ -193,7 +198,7 @@ $scope.criaPaginas = function(processo){
 					pag.cor = "#3aa0d6";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#084f75")
+						var v_pagina = $scope.criarTabPaginas(i,"#0780A7")
 						$scope.tab_pagA.push(v_pagina)
 					}
 					
@@ -203,7 +208,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#084f75";
+					pag.cor = "#0780A7";
 				} if( i == 3 ){
 					if(j == 0){
 						var v_pagina = $scope.criarTabPaginas(i,"#3aa0d6")
@@ -301,11 +306,11 @@ $scope.criaPaginas = function(processo){
 				}
 			}
 		} if($scope.processo.nome == "C"){
-			cor = "#db3e39";					
+			cor = "#ab4047";					
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#761c19")
+						var v_pagina = $scope.criarTabPaginas(i,"#ab4047")
 						$scope.tab_pagC.push(v_pagina)
 					}
 					
@@ -315,10 +320,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#761c19";
+					pag.cor = "#ab4047";
 				} if( i == 1){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#db3e39")
+						var v_pagina = $scope.criarTabPaginas(i,"#bf565c")
 						$scope.tab_pagC.push(v_pagina)
 					}
 					
@@ -328,10 +333,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#db3e39";
+					pag.cor = "#bf565c";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#761c19")
+						var v_pagina = $scope.criarTabPaginas(i,"#ab4047")
 						$scope.tab_pagC.push(v_pagina)
 					}
 					
@@ -341,10 +346,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#761c19";
+					pag.cor = "#ab4047";
 				} if( i == 3 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#db3e39")
+						var v_pagina = $scope.criarTabPaginas(i,"#bf565c")
 						$scope.tab_pagC.push(v_pagina)
 					}
 					var pag = angular.copy($scope.processo);
@@ -353,7 +358,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#db3e39";
+					pag.cor = "#bf565c";
 				}
 				
 				$scope.processoC.push(pag);
@@ -370,11 +375,11 @@ $scope.criaPaginas = function(processo){
 				}
 			}
 		} if($scope.processo.nome == "D"){
-			cor = "#3C5148"
+			cor = "#4B706A"
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#1B2727")
+						var v_pagina = $scope.criarTabPaginas(i,"#4B706A")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					
@@ -384,10 +389,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#1B2727";
+					pag.cor = "#4B706A";
 				} if( i == 1){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#3C5148")
+						var v_pagina = $scope.criarTabPaginas(i,"#61928A")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -396,10 +401,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#3C5148";
+					pag.cor = "#61928A";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#1B2727")
+						var v_pagina = $scope.criarTabPaginas(i,"#4B706A")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -408,10 +413,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#1B2727";
+					pag.cor = "#4B706A";
 				} if( i == 3 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#3C5148")
+						var v_pagina = $scope.criarTabPaginas(i,"#61928A")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -420,7 +425,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#3C5148";
+					pag.cor = "#61928A";
 				}
 				
 				$scope.processoD.push(pag);
@@ -433,6 +438,140 @@ $scope.criaPaginas = function(processo){
 					var qtdbyte =processo.bytes;
 					for(var p = qtdbyte; p <= pa-1; p++){
 						$scope.processoD[p].byte = null;
+					}
+				}
+			}
+		} if($scope.processo.nome == "E"){
+			cor = "#785964"
+			for(var j = 0; j < 4; j++){
+				if( i ==0){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#785964")
+						$scope.tab_pagE.push(v_pagina)
+					}
+					
+					var pag = angular.copy(processo);
+					pag.endLogico = "0000";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#785964";
+				} if( i == 1){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#AD8786")
+						$scope.tab_pagE.push(v_pagina)
+					}
+					var pag = angular.copy(processo);
+					pag.endLogico = "0001";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#AD8786";
+				} if( i == 2 ){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#785964")
+						$scope.tab_pagE.push(v_pagina)
+					}
+					var pag = angular.copy(processo);
+					pag.endLogico = "0010";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#785964";
+				} if( i == 3 ){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#AD8786")
+						$scope.tab_pagE.push(v_pagina)
+					}
+					var pag = angular.copy(processo);
+					pag.endLogico = "0011";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#AD8786";
+				}
+				
+				$scope.processoE.push(pag);
+				nByte++;
+
+				
+
+				if(i == paginasize-1 && j == 3){
+					var pa = $scope.processoE.length;
+					var qtdbyte =processo.bytes;
+					for(var p = qtdbyte; p <= pa-1; p++){
+						$scope.processoE[p].byte = null;
+					}
+				}
+			}
+		} if($scope.processo.nome == "F"){
+			cor = "#675B43"
+			for(var j = 0; j < 4; j++){
+				if( i ==0){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#4E4533")
+						$scope.tab_pagF.push(v_pagina)
+					}
+					
+					var pag = angular.copy(processo);
+					pag.endLogico = "0000";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#4E4533";
+				} if( i == 1){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#675B43")
+						$scope.tab_pagF.push(v_pagina)
+					}
+					var pag = angular.copy(processo);
+					pag.endLogico = "0001";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#675B43";
+				} if( i == 2 ){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#4E4533")
+						$scope.tab_pagF.push(v_pagina)
+					}
+					var pag = angular.copy(processo);
+					pag.endLogico = "0010";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#4E4533";
+				} if( i == 3 ){
+					if(j == 0){
+						var v_pagina = $scope.criarTabPaginas(i,"#675B43")
+						$scope.tab_pagF.push(v_pagina)
+					}
+					var pag = angular.copy(processo);
+					pag.endLogico = "0011";
+					pag.byte = processo.nome+nByte;
+					var bin = "00"+(j).toString(2);
+					pag.deslocamento = bin.slice(-2);
+					pag.endMF = null; 
+					pag.cor = "#675B43";
+				}
+				
+				$scope.processoF.push(pag);
+				nByte++;
+
+				
+
+				if(i == paginasize-1 && j == 3){
+					var pa = $scope.processoF.length;
+					var qtdbyte =processo.bytes;
+					for(var p = qtdbyte; p <= pa-1; p++){
+						$scope.processoF[p].byte = null;
 					}
 				}
 			}
@@ -679,6 +818,56 @@ $scope.addMemoriaf = function(index){
 			$(".nav-tabs").notify("Memória insuficiente para o processo "+ index +" !", "warn");
 		}
 	}
+	if(index === 'E'){
+		var qtdD = $scope.processoE.length/4;
+		if(qtdD <= $scope.plivre){
+			var pos = 0;
+			for(i=0; i < qtdD; i++){
+				var indice = $scope.verificaMFlivre()
+				if($scope.paginasMF[indice].status){
+					var start = $scope.paginasMF[indice].start;
+					$scope.tab_pagE[i].endFisico = $scope.memoriaF[start].endFisico;
+					for(b=0; b <4 ;b++){
+						$scope.memoriaF[start].status = false;
+						$scope.memoriaF[start].cor = $scope.processoE[pos+b].cor;
+						$scope.memoriaF[start].byte = $scope.processoE[pos+b].byte;
+						start++;
+					}
+					pos = pos+4
+				}
+				$scope.paginasMF[indice].status = false;
+				$scope.paginasMF[indice].processo = "E";
+
+			}
+		}else{	
+			$(".nav-tabs").notify("Memória insuficiente para o processo "+ index +" !", "warn");
+		}
+	}
+	if(index === 'F'){
+		var qtdD = $scope.processoF.length/4;
+		if(qtdD <= $scope.plivre){
+			var pos = 0;
+			for(i=0; i < qtdD; i++){
+				var indice = $scope.verificaMFlivre()
+				if($scope.paginasMF[indice].status){
+					var start = $scope.paginasMF[indice].start;
+					$scope.tab_pagF[i].endFisico = $scope.memoriaF[start].endFisico;
+					for(b=0; b <4 ;b++){
+						$scope.memoriaF[start].status = false;
+						$scope.memoriaF[start].cor = $scope.processoF[pos+b].cor;
+						$scope.memoriaF[start].byte = $scope.processoF[pos+b].byte;
+						start++;
+					}
+					pos = pos+4
+				}
+				$scope.paginasMF[indice].status = false;
+				$scope.paginasMF[indice].processo = "F";
+
+			}
+		}else{	
+			$(".nav-tabs").notify("Memória insuficiente para o processo "+ index +" !", "warn");
+		}
+	}
 
 	
 	console.log("Pag. Memoria F:", $scope.paginasMF)
@@ -716,9 +905,17 @@ $scope.rmMemoriaf = function(index,obj){
 				$scope.tab_pagC = [];
 				$scope.processoC =[];
 				
-			}else{
+			}else if(index == "D"){
 				$scope.tab_pagD = [];
 				$scope.processoD =[];
+				
+			}else if(index == "E"){
+				$scope.tab_pagE = [];
+				$scope.processoE =[];
+				
+			}else{
+				$scope.tab_pagF = [];
+				$scope.processoF =[];
 				
 
 			}
