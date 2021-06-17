@@ -366,7 +366,7 @@ $scope.criaPaginas = function(processo){
 			for(var j = 0; j < 4; j++){
 				if( i ==0){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#988CD1")
+						var v_pagina = $scope.criarTabPaginas(i,"#34171A")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					
@@ -376,10 +376,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#988CD1";
+					pag.cor = "#34171A";
 				} if( i == 1){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#526eb5")
+						var v_pagina = $scope.criarTabPaginas(i,"#7E5252")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -388,10 +388,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#526eb5";
+					pag.cor = "#7E5252";
 				} if( i == 2 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#988CD1")
+						var v_pagina = $scope.criarTabPaginas(i,"#34171A")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -400,10 +400,10 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#988CD1";
+					pag.cor = "#34171A";
 				} if( i == 3 ){
 					if(j == 0){
-						var v_pagina = $scope.criarTabPaginas(i,"#526eb5")
+						var v_pagina = $scope.criarTabPaginas(i,"#7E5252")
 						$scope.tab_pagD.push(v_pagina)
 					}
 					var pag = angular.copy(processo);
@@ -412,7 +412,7 @@ $scope.criaPaginas = function(processo){
 					var bin = "00"+(j).toString(2);
 					pag.deslocamento = bin.slice(-2);
 					pag.endMF = null; 
-					pag.cor = "#526eb5";
+					pag.cor = "#7E5252";
 				}
 				
 				$scope.processoD.push(pag);
@@ -717,11 +717,15 @@ $scope.rmMemoriaf = function(index,obj){
 
 		}
 	}
+var nome = $scope.processos[posicao].nome 
 $scope.processos.splice(posicao,1);
-if ($scope.processos.length > 0){
+
+console.log("Quem é: ", $scope.selecIdProc)
+if ($scope.processos.length > 0 && nome == $scope.selecIdProc ){
 	$scope.selecProc($scope.processos[0].nome)
 
 }
+
 
 
 }
@@ -771,48 +775,7 @@ $scope.mediaTurn;
 }
 
 
-function simulandoFIFO(){
-	var escalonar = new FIFO(); 
-	var resultado = []; 
-	var status = new Array();
-	var aux;
 
-	time =0;  
-
-	while(!pc.vazio() || !escalonar.vazio() || cpu.ocupado){   
-		aux = pc.processosPorTempo(time);
-		
-		while(aux.length >0){
-			escalonar.addProcesso(aux.shift()); 
-		}
-
-		if(!cpu.ocupado && !escalonar.vazio()){  
-			cpu.alocaProcesso(escalonar.escolherProcesso());
-		}
-
-		if(cpu.ocupado){ 
-			aux = cpu.act();
-			if(!cpu.ocupado)  
-				pc.addfinalizado(aux); 
-		}
-		else
-			aux = null;
-
-		escalonar.addTEspera(1);  
-
-		if(aux != null) 
-			resultado.push({nome:aux.nome, cor: aux.cor});
-		else 
-			resultado.push({nome:"-", cor: "#FFFFFF"}); 
-
-		time++;
-	}
-
-	for(var i=0; i< resultado.length; i++){
-		status.push({tempo:i, nome:resultado[i].nome, cor: resultado[i].cor});
-	}
-	return status;
-}
 
 
 function validar(){		//verifica se o primeiro processo inicializa com zero
