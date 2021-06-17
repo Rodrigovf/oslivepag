@@ -129,7 +129,7 @@ $scope.cadastrar = function(processo){
 	} else {
 		if($scope.plivre < paginasize ){
 			if(processo.bytes > 16){
-				$(".alerta").notify("Tamanho máximo do processo 16 Bytes(4 páginas)", "error",{ position:"top center" });
+				$(".glyphicon-cog").notify("Tamanho máximo do processo 16 Bytes(4 páginas)", "error",{ position:"top center" });
 				$.notify("Memória insuficiente!\n Existe "+qtdbytelivre+" bytes de memória disponível", "info",{ position:"righ top" });
 			}else {
 				$.notify("Memória insuficiente!\n Existe "+qtdbytelivre+" bytes de memória disponível", "info",{ position:"righ top" });
