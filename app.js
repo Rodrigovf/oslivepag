@@ -4,10 +4,7 @@ angular.module("oslive", ['ngAnimate'])
 .controller('homeController', function($scope){
 
 
-var carga = 1000;
-var cont = 100
-var pc, cpu, pagina, time;
-var indiceLivreMF = 0;
+var pc,  pagina;
 $scope.free = 32;
 $scope.nomeProcesso = ["A","B","C","D","E","F"]
 //Definindo processos 
@@ -79,12 +76,6 @@ $scope.paginasMF=[
 
 $scope.memoriaF1 = $scope.memoriaF.slice(0,16)
 $scope.memoriaF2 = $scope.memoriaF.slice(16,32)
-
-
-
-//info é o valor da primeira posição do select "Selecione o Algoritmo de escalonamento"
-$scope.escalonador = "FIFO"
-$scope.listaFIFO=[];
 
 $scope.selecProc = function(nome){
 	$scope.selecIdProc = nome;
@@ -715,6 +706,7 @@ $scope.addMemoriaf = function(index){
 	
 
 	if(index === 'A'){
+		console.log("Ver campo byte ", $scope.processoA)
 		var qtdA = $scope.processoA.length/4;
 		if(qtdA <= $scope.plivre){
 			var pos = 0;
@@ -728,7 +720,11 @@ $scope.addMemoriaf = function(index){
 					for(b=0; b <4 ;b++){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoA[pos+b].cor;
-						$scope.memoriaF[start].byte = $scope.processoA[pos+b].byte;
+						if($scope.processoA[pos+b].byte == null){
+							$scope.memoriaF[start].byte = "Sobra"
+						}else{
+							$scope.memoriaF[start].byte = $scope.processoA[pos+b].byte;
+						}
 						start++;
 					}
 					pos = pos+4
@@ -755,7 +751,11 @@ $scope.addMemoriaf = function(index){
 					for(b=0; b <4 ;b++){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoB[pos+b].cor;
-						$scope.memoriaF[start].byte = $scope.processoB[pos+b].byte;
+						if($scope.processoB[pos+b].byte == null){
+							$scope.memoriaF[start].byte = "Sobra"
+						}else{
+							$scope.memoriaF[start].byte = $scope.processoB[pos+b].byte;
+						}
 						start++;
 					}
 					pos = pos+4
@@ -781,7 +781,11 @@ $scope.addMemoriaf = function(index){
 					for(b=0; b <4 ;b++){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoC[pos+b].cor;
-						$scope.memoriaF[start].byte = $scope.processoC[pos+b].byte;
+						if($scope.processoC[pos+b].byte == null){
+							$scope.memoriaF[start].byte = "Sobra"
+						}else{
+							$scope.memoriaF[start].byte = $scope.processoC[pos+b].byte;
+						}
 						start++;
 					}
 					pos = pos+4
@@ -807,7 +811,11 @@ $scope.addMemoriaf = function(index){
 					for(b=0; b <4 ;b++){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoD[pos+b].cor;
-						$scope.memoriaF[start].byte = $scope.processoD[pos+b].byte;
+						if($scope.processoD[pos+b].byte == null){
+							$scope.memoriaF[start].byte = "Sobra"
+						}else{
+							$scope.memoriaF[start].byte = $scope.processoD[pos+b].byte;
+						}
 						start++;
 					}
 					pos = pos+4
@@ -832,7 +840,11 @@ $scope.addMemoriaf = function(index){
 					for(b=0; b <4 ;b++){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoE[pos+b].cor;
-						$scope.memoriaF[start].byte = $scope.processoE[pos+b].byte;
+						if($scope.processoE[pos+b].byte == null){
+							$scope.memoriaF[start].byte = "Sobra"
+						}else{
+							$scope.memoriaF[start].byte = $scope.processoE[pos+b].byte;
+						}
 						start++;
 					}
 					pos = pos+4
@@ -857,7 +869,11 @@ $scope.addMemoriaf = function(index){
 					for(b=0; b <4 ;b++){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoF[pos+b].cor;
-						$scope.memoriaF[start].byte = $scope.processoF[pos+b].byte;
+						if($scope.processoF[pos+b].byte == null){
+							$scope.memoriaF[start].byte = "Sobra"
+						}else{
+							$scope.memoriaF[start].byte = $scope.processoF[pos+b].byte;
+						}
 						start++;
 					}
 					pos = pos+4
