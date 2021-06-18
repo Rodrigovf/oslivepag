@@ -721,7 +721,7 @@ $scope.addMemoriaf = function(index){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoA[pos+b].cor;
 						if($scope.processoA[pos+b].byte == null){
-							$scope.memoriaF[start].byte = "Sobra"
+							$scope.memoriaF[start].byte = "SOBRA"
 						}else{
 							$scope.memoriaF[start].byte = $scope.processoA[pos+b].byte;
 						}
@@ -752,7 +752,7 @@ $scope.addMemoriaf = function(index){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoB[pos+b].cor;
 						if($scope.processoB[pos+b].byte == null){
-							$scope.memoriaF[start].byte = "Sobra"
+							$scope.memoriaF[start].byte = "SOBRA"
 						}else{
 							$scope.memoriaF[start].byte = $scope.processoB[pos+b].byte;
 						}
@@ -782,7 +782,7 @@ $scope.addMemoriaf = function(index){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoC[pos+b].cor;
 						if($scope.processoC[pos+b].byte == null){
-							$scope.memoriaF[start].byte = "Sobra"
+							$scope.memoriaF[start].byte = "SOBRA"
 						}else{
 							$scope.memoriaF[start].byte = $scope.processoC[pos+b].byte;
 						}
@@ -812,7 +812,7 @@ $scope.addMemoriaf = function(index){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoD[pos+b].cor;
 						if($scope.processoD[pos+b].byte == null){
-							$scope.memoriaF[start].byte = "Sobra"
+							$scope.memoriaF[start].byte = "SOBRA"
 						}else{
 							$scope.memoriaF[start].byte = $scope.processoD[pos+b].byte;
 						}
@@ -841,7 +841,7 @@ $scope.addMemoriaf = function(index){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoE[pos+b].cor;
 						if($scope.processoE[pos+b].byte == null){
-							$scope.memoriaF[start].byte = "Sobra"
+							$scope.memoriaF[start].byte = "SOBRA"
 						}else{
 							$scope.memoriaF[start].byte = $scope.processoE[pos+b].byte;
 						}
@@ -870,7 +870,7 @@ $scope.addMemoriaf = function(index){
 						$scope.memoriaF[start].status = false;
 						$scope.memoriaF[start].cor = $scope.processoF[pos+b].cor;
 						if($scope.processoF[pos+b].byte == null){
-							$scope.memoriaF[start].byte = "Sobra"
+							$scope.memoriaF[start].byte = "SOBRA"
 						}else{
 							$scope.memoriaF[start].byte = $scope.processoF[pos+b].byte;
 						}
