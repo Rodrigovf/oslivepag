@@ -1,10 +1,8 @@
-
 angular.module("oslive", ['ngAnimate'])
 
 .controller('homeController', function($scope){
 
 
-var pc,  pagina;
 $scope.free = 32;
 $scope.nomeProcesso = ["A","B","C","D","E","F"]
 //Definindo processos 
@@ -82,21 +80,18 @@ $scope.selecProc = function(nome){
 
 }
 
-//////////////////////////CADASTAR PROCESSO E CRIAR MEMÓRIA LÓGICA E TABELA DE PÁGINAS////////////////
+//////////////////////////CADASTAR PROCESSO, CRIA MEMÓRIA LÓGICA E TABELA DE PÁGINAS////////////////
 $scope.cadastrar = function(processo){
+	var qtdbytelivre = $scope.plivre*4;
+	var paginasize = processo.bytes;
+	var npaginas = [4,8,12,16]
 	$scope.plivre=0; 
-	console.log("nome: ",processo.nome," bytes: ",processo.bytes)
-	console.log("teste de retorno nome: ",!!processo.nome)	
-	console.log("teste de retorno bytes: ",!!processo.bytes)
-
 	for(p=0; p < $scope.paginasMF.length; p++){
 		if($scope.paginasMF[p].status){
 			$scope.plivre++;
 		}
 	}
-    var qtdbytelivre = $scope.plivre*4;
-	var paginasize = processo.bytes;
-	var npaginas = [4,8,12,16]
+    
 	if(npaginas.includes(paginasize)){
 		paginasize = Math.floor(processo.bytes/4);
 	}else{
@@ -105,10 +100,10 @@ $scope.cadastrar = function(processo){
 	
 	if(!verificaID(processo.nome) && $scope.plivre >= paginasize && !!processo.nome && !!processo.bytes){
 		if(processo.bytes <= 16){
-			var cor = $scope.criaPaginas(processo)
-			$scope.addMemoriaf(processo.nome)
+			var cor = $scope.criaPaginas(processo) // CRIA A MEMÓRIA LÓGICA DDO PROCESSO
+			$scope.addMemoriaf(processo.nome)      // ADICIONA OS PROCESSO NA MEMÓRIA FÍSICA
+			$scope.selecProc(processo.nome)        // SELECIONA O PROCESSO COMO O PADRÃO(TELA PRINCIPAL)
 			var p = angular.copy(processo);
-			$scope.selecProc(processo.nome)
 			p.status=true;
 			p.cor = cor;
 			$scope.processos.push(p);
@@ -143,6 +138,7 @@ $scope.cadastrar = function(processo){
 }
 
 
+// Cria páginas da memória lógica dos processos
 $scope.criaPaginas = function(processo){
 	var cor;
 	var nByte = 0;
@@ -571,7 +567,7 @@ $scope.criaPaginas = function(processo){
 	return cor;
 }
 
-
+//criar tabela de páginas para o processo
 $scope.criarTabPaginas = function(pagina,cor){
 	var aux = new Object();
 	var bin = "000"+(pagina).toString(2);
@@ -581,57 +577,7 @@ $scope.criarTabPaginas = function(pagina,cor){
 	return aux;
 }
 
-$scope.carregarPagina = function(processo){
-	
-	if(!verificaPagina(processo.nome)){
-		for (var i = 0; i < $scope.memoriaF.length; i ++) {
-			if($scope.memoriaF[i].nome != null){
-				if($scope.memoriaF[i].horaCarga < carga){
-					carga = $scope.memoriaF[i].horaCarga;
-					pagina =  i;
-					
-				}else if(i == 7){
-					$scope.listaFIFO[$scope.listaFIFO.length -1].cor = "#f07605";
-					
-					$scope.listaFIFO.pop();
-					$scope.memoriaF[pagina].nome = processo.nome;
-					$scope.memoriaF[pagina].cor = processo.cor;
-					$scope.memoriaF[pagina].horaCarga = cont;
-					$scope.memoriaF[pagina].processoL.bit = "i";
-					$scope.memoriaF[pagina].processoL.endMF = null;
-					$scope.memoriaF[pagina].processoL.cort = "#fff";
-					$scope.listaFIFO.unshift($scope.memoriaF[pagina])
-
-
-					processo.cort = processo.cor;
-					processo.bit = "V";
-					processo.endMF = $scope.memoriaF[pagina].paginaf;
-					$scope.memoriaF[pagina].processoL = processo;
-					cont ++;
-					carga = 1000;
-				}
-				
-			} else if ($scope.memoriaF[i].nome == null) {
-				
-				$scope.memoriaF[i].nome = processo.nome;
-				$scope.memoriaF[i].cor = processo.cor;
-				$scope.memoriaF[i].horaCarga = cont;
-				$scope.memoriaF[i].processoL = processo;
-				$scope.listaFIFO.unshift($scope.memoriaF[i])
-				processo.cort = processo.cor;
-				processo.bit = "V";
-				processo.endMF = $scope.memoriaF[i].paginaf;
-				cont ++;
-				$(".glyphicon-cog").notify("Página "+ processo.nome +" carregada na memória física!" , "success");
-				break;
-			}
-		}
-	} else{
-		$(".glyphicon-cog").notify("Página "+ processo.nome +" Já está na memória!", "error");
-	}
-}
-
-
+// limprar formulário de criação dos processos
 $scope.limparForm = function(nome){
 	$scope.processo.nome="";
 	$scope.processo.bytes=null;
@@ -672,24 +618,9 @@ $scope.geradorAleatorio = function(){
 	}
 }
 
-// cria fila de aptos
-$scope.aptos = function(list) {
-	var aux, count = null;
-	$scope.filaAptos = [];
-	$scope.filaDelay = [];
-	list.forEach(function(processo, i){
-		if (i != 0) count ++;
-		if (processo.nome != aux && processo.nome != "-") {
-			aux = processo.nome;
-			p = angular.copy(processo);
-			p.count = count;
-			$scope.filaAptos.push(p);
-			$scope.filaDelay.push(count);
-		}
-	});
-}
 
 
+//Procurar página livre na Memória Física
 $scope.verificaMFlivre =  function(){
 	for (p = 0; p < $scope.paginasMF.length; p++ ){
 		if( $scope.paginasMF[p].status){
@@ -700,7 +631,6 @@ $scope.verificaMFlivre =  function(){
 }
 
 // Adicionar paginas na memória física
-
 $scope.addMemoriaf = function(index){
 	$scope.selecIdProc = index;
 	
@@ -886,14 +816,11 @@ $scope.addMemoriaf = function(index){
 			$(".nav-tabs").notify("Memória insuficiente para o processo "+ index +" !", "warn");
 		}
 	}
-
-	
-	console.log("Pag. Memoria F:", $scope.paginasMF)
 };
 
 
 
-// Remover paginas na memória física
+// Excluir processo
 $scope.rmMemoriaf = function(index,obj){
 	var aux = 0;
 	var procnome = obj.nome;
@@ -959,68 +886,8 @@ if ($scope.processos.length > 0 && nome == $scope.selecIdProc ){
 
 }
 
-
-//cria-se uma copia do objeto a ser editado e seta a copia no scope.processo
-$scope.editar = function(processo){
-	$scope.aleatorio = false;
-	var copia = angular.copy(processo);
-	$scope.processo = copia;
-	$scope.processo.edit = true;
-}
-
-$scope.simular = function(){
-var algoritmo = $scope.escalonador;
-$scope.resultados;
-$scope.resultados2;
-$scope.mediaEspera;
-$scope.mediaTurn;
-
-	var lista = validar();
-	pc = new PC (lista);
-	cpu = new CPU ();
-
-	if(algoritmo!=null && algoritmo!="info"){
-		if(lista.length != 0){
-			
-			if(algoritmo == "FIFO"){
-				$scope.resultados = simulandoFIFO();
-				$scope.resultados2 = pc.tabelaResultado();
-				drawChart($scope.resultados2);
-				$.notify("Escalonamento FIFO!", "success");
-			}
-
-		}
-		else{
-			$(".glyphicon-cog").notify("Adicione os Processos!", {
-				position:"right" });
-		}
-
-	} 
-	else{
-		$(".glyphicon-cog").notify("Selecione o algoritmo!", {
-			position:"right" });
-	}
-	$scope.aptos($scope.resultados);
-}
-
-
-
-
-
-function validar(){		//verifica se o primeiro processo inicializa com zero
-	var pro = new Array();
-
-	for(var i=0; i< $scope.processos.length; i++){
-		if($scope.processos[0].pagina != 0 ){
-			var cor = gera_cor();
-			pro.push(new Processo($scope.processos[i].nome, $scope.processos[i].pagina, $scope.processos[i].cor));
-		}
-	}
-	return pro;
-}
-
-
-function verificaID(nome){			// Verifica se o processo já existe
+// Verifica se o processo já existe
+function verificaID(nome){			
 	for(var i=0; i< $scope.processos.length; i++){
 		if($scope.processos[i].nome == nome){
 			return true;
@@ -1029,24 +896,5 @@ function verificaID(nome){			// Verifica se o processo já existe
 	return false;
 }
 
-function verificaPagina(nome){			// Verifica se a página já está na memória física
-	for(var i=0; i< $scope.memoriaF.length; i++){
-		if($scope.memoriaF[i].nome == nome){
-			return true;
-		}
-	}
-	return false;
-}
-
-function gera_cor(){		// gera cor aleatoria
-    var hexadecimais = '0123456789ABCDEF';
-    var cor = '#';
-    // Pega um número aleatório no array acima
-    for (var i = 0; i < 6; i++ ) {
-    //E concatena à variável cor
-        cor += hexadecimais[Math.floor(Math.random() * 16)];
-    }
-    return cor;
-}
 
 });
