@@ -82,7 +82,7 @@ $scope.selecProc = function(nome){
 
 //////////////////////////CADASTAR PROCESSO, CRIA MEMÓRIA LÓGICA E TABELA DE PÁGINAS////////////////
 $scope.cadastrar = function(processo){
-	var qtdbytelivre = $scope.plivre*4;
+	
 	var paginasize = processo.bytes;
 	var npaginas = [4,8,12,16]
 	$scope.plivre=0; 
@@ -91,7 +91,7 @@ $scope.cadastrar = function(processo){
 			$scope.plivre++;
 		}
 	}
-    
+    	var qtdbytelivre = $scope.plivre*4;
 	if(npaginas.includes(paginasize)){
 		paginasize = Math.floor(processo.bytes/4);
 	}else{
